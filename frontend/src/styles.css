@@ -1,0 +1,32 @@
+.page-bottom-right-action {
+	display: flex;
+	justify-content: flex-end;
+	padding-top: 1.25rem;
+}
+
+.page-nav-button {
+	border: 0;
+	border-radius: 999px;
+	background: #f0e9d6;
+	color: #1b2a26;
+	font-family: "Poppins", "Segoe UI", sans-serif;
+	font-size: 1.1rem;
+	font-weight: 600;
+	padding: 0.8rem 1.6rem;
+	cursor: pointer;
+	transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.page-nav-button:hover:enabled {
+	transform: translateY(-1px);
+}
+
+.page-nav-button:focus-visible {
+	outline: 3px solid #227a5e;
+	outline-offset: 2px;
+}
+
+.page-nav-button:disabled {
+	opacity: 0.45;
+	cursor: not-allowed;
+}

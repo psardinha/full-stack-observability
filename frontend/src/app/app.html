@@ -1,0 +1,29 @@
+<main class="page" [class.page-top]="isRouteExercisePage()">
+  @if (!isRouteExercisePage()) {
+    <section class="card">
+      <h1 id="trace-title">{{ title }}</h1>
+
+      <div class="field-row">
+        <label for="string-argument">String argument</label>
+        <input id="string-argument"
+               type="text"
+               [formControl]="argumentControl"
+               placeholder="Type a value"/>
+      </div>
+
+      <div class="actions">
+        <button type="button" (click)="reverse()">Reverse</button>
+        <button type="button" (click)="length()">Length</button>
+        <button type="button" (click)="mix()">Mix</button>
+        <button type="button" (click)="exception()">Exception</button>
+      </div>
+
+      <output class="result">Result: {{ result() }}</output>
+
+      <div class="page-bottom-right-action">
+        <button type="button" (click)="goToRouteExercise()">Try Route</button>
+      </div>
+    </section>
+  }
+  <router-outlet />
+</main>

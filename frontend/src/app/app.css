@@ -1,0 +1,125 @@
+:host {
+	--ink: #1b2a26;
+	--ink-soft: #3e5550;
+	--surface: #f8f5ea;
+	--surface-strong: #f0e9d6;
+	--accent: #c05f32;
+	--accent-ink: #ffffff;
+
+	min-height: 100dvh;
+	display: block;
+	font-family: "Poppins", "Segoe UI", sans-serif;
+	font-size: 18px;
+	color: var(--ink);
+}
+
+.page {
+	min-height: 100dvh;
+	display: grid;
+	place-items: center;
+	padding: 1rem;
+	background:
+		radial-gradient(circle at 12% 20%, #ffd9a8 0%, transparent 42%),
+		radial-gradient(circle at 88% 80%, #d3efd8 0%, transparent 48%),
+		linear-gradient(180deg, #f6f2e4 0%, #e8f2e0 100%);
+}
+
+.page.page-top {
+	place-items: start center;
+}
+
+.card {
+	width: min(94vw, 700px);
+	border-radius: 20px;
+	background: linear-gradient(180deg, var(--surface) 0%, var(--surface-strong) 100%);
+	border: 1px solid #d6ccb0;
+	box-shadow: 0 20px 40px rgb(68 52 26 / 20%);
+	padding: 2.2rem;
+}
+
+h1 {
+	margin: 0 0 1.25rem;
+	font-size: clamp(2rem, 1.6rem + 1.2vw, 2.6rem);
+	letter-spacing: 0.03em;
+}
+
+.field-row {
+	display: grid;
+	gap: 0.7rem;
+	width: min(100%, 540px);
+	margin-inline: auto;
+}
+
+label {
+	color: var(--ink-soft);
+	font-weight: 600;
+	font-size: 1.15rem;
+	text-align: left;
+}
+
+input {
+	width: 100%;
+	border: 1px solid #b4c3b9;
+	border-radius: 12px;
+	padding: 1rem 1.1rem;
+	font-size: 1.05rem;
+	font-family: inherit;
+	text-align: left;
+	background: #fffef9;
+}
+
+input:focus-visible,
+button:focus-visible {
+	outline: 3px solid #227a5e;
+	outline-offset: 2px;
+}
+
+.actions {
+	display: flex;
+	gap: 1rem;
+	margin-top: 1.25rem;
+	justify-content: center;
+}
+
+button {
+	border: 0;
+	border-radius: 999px;
+	background: var(--accent);
+	color: var(--accent-ink);
+	font: inherit;
+	font-weight: 600;
+	padding: 0.8rem 1.6rem;
+	font-size: 1.1rem;
+	cursor: pointer;
+	transition: transform 120ms ease, opacity 120ms ease;
+}
+
+button:hover:enabled {
+	transform: translateY(-1px);
+}
+
+button:disabled {
+	opacity: 0.45;
+	cursor: not-allowed;
+}
+
+.result {
+	display: block;
+	margin: 2rem 0 0;
+	min-height: 1.6rem;
+	font-size: 1.2rem;
+	text-align: left;
+	width: min(100%, 540px);
+	color: var(--ink-soft);
+	font-weight: 500;
+}
+
+@media (max-width: 460px) {
+	.actions {
+		flex-direction: column;
+	}
+
+	button {
+		width: 100%;
+	}
+}
