@@ -22,16 +22,18 @@ public class LoadGenerator {
 
   @ConfigProperty(name = "make.load", defaultValue = "false")
   boolean withContinuousLoad;
-    
-  void onStart(@Observes StartupEvent event) {
-    if (! withContinuousLoad)
-      return;
-    Thread.ofVirtual().name("load-generator").start(this::generateLoad);
- }
 
- private void generateLoad() {
+  private volatile boolean running = true;
+
+  void onStart(@Observes StartupEvent event) {
+    if (withContinuousLoad)
+      Thread.ofVirtual().name("load-generator").start(this::generateLoad);
+  }
+
+  void generateLoad() {
     StringBuilder sb = new StringBuilder();
-    while (true) {
+
+    while (running) {
       int randomLength = (int) (Math.random() * 31);
       sb.setLength(0);
 
@@ -39,16 +41,22 @@ public class LoadGenerator {
         sb.append((char) (Math.random() * 70 + 'A'));
 
       try {
-        Thread.sleep((long) (2 *  MEAN_SLEEP_TIME * Math.random()));
+        Thread.sleep((long) (2 * MEAN_SLEEP_TIME * Math.random()));
       } catch (InterruptedException e) {}
+
       // result discarded
       client.reverse(new ReverseRequest(sb.toString()));
-      
+
       try {
-        Thread.sleep((long) (2 *  MEAN_SLEEP_TIME * Math.random()));
+        Thread.sleep((long) (2 * MEAN_SLEEP_TIME * Math.random()));
       } catch (InterruptedException e) {}
+
       // result discarded
       client.length(sb.toString());
     }
+  }
+
+  void stop() {
+    running = false;
   }
 }
